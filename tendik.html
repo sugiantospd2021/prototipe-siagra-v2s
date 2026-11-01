@@ -240,6 +240,34 @@
 
 <script>
 /* ============================================================
+   PROTEKSI SOURCE CODE SIAGRA (gabungan dari proteksi.html)
+   ============================================================ */
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert('⚠️ Klik kanan dinonaktifkan untuk melindungi source code SIAGRA.');
+});
+
+document.addEventListener('copy', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('cut', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X')) {
+    e.preventDefault();
+  }
+  if (e.key === 'F12' || e.keyCode === 123) {
+    e.preventDefault();
+    alert('⚠️ Fitur Inspect Element dinonaktifkan.');
+  }
+});
+</script>
+
+<script>
+/* ============================================================
    SIAGRA v.2.s — Tendik PROTOTIPE (TANPA SUPABASE)
    ============================================================ */
 
@@ -340,6 +368,37 @@ function formatTanggalPanjang(tgl){
   return d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear();
 }
 
+/* ---------- SAPAAN WAKTU & NAMA PANGGILAN (BARU — fix bug) ---------- */
+function ambilSapaanWaktu(){
+  const now = new Date();
+  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const wita = new Date(utc + (8 * 3600000));
+  const jam = wita.getHours();
+
+  if (jam >= 4 && jam < 11) {
+    return { kelas:'w-pagi', emoji:'🌅', sapaan:'Selamat Pagi',
+             sub:'Siap membantu administrasi hari ini?' };
+  } else if (jam >= 11 && jam < 15) {
+    return { kelas:'w-siang', emoji:'☀️', sapaan:'Selamat Siang',
+             sub:'Semangat menyelesaikan pekerjaan TU.' };
+  } else if (jam >= 15 && jam < 18) {
+    return { kelas:'w-sore', emoji:'🌇', sapaan:'Selamat Sore',
+             sub:'Jangan lupa cek arsip & surat hari ini.' };
+  }
+  return { kelas:'w-malam', emoji:'🌙', sapaan:'Selamat Malam',
+           sub:'Waktunya beristirahat, siapkan agenda esok hari.' };
+}
+
+function ambilNamaPanggilan(namaLengkap){
+  if(!namaLengkap) return 'Tenaga Kependidikan';
+  const namaDepan = String(namaLengkap).split(',')[0].trim().split(' ')[0];
+  const dataTendik = (typeof cariDataTendikLokal === 'function') ? cariDataTendikLokal() : null;
+  let gelar = '';
+  if(dataTendik && dataTendik.jk === 'L') gelar = 'Bapak ';
+  else if(dataTendik && dataTendik.jk === 'P') gelar = 'Ibu ';
+  return gelar + namaDepan;
+}
+
 /* ---------- AVATAR SVG ---------- */
 function avatarSvg(nama){
   let hash = 0;
@@ -357,10 +416,10 @@ function avatarSvg(nama){
 }
 function pakaiFotoAtauAvatar(el, nama){
   if(!el) return;
-    const key1 = 'ra_foto_' + (user && user.email ? user.email : nama);
+  const key1 = 'ra_foto_' + (user && user.email ? user.email : nama);
   const key2 = 'ra_foto_' + nama;
   const fotoUpload = localStorage.getItem(key1) || localStorage.getItem(key2);
-    if(fotoUpload){ el.innerHTML = `<img src="${fotoUpload}" alt="Foto">`; return; }
+  if(fotoUpload){ el.innerHTML = `<img src="${fotoUpload}" alt="Foto">`; return; }
   const namaLower = (nama || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const namaAsli = namaKeFile(nama);
   const kandidat = [namaLower, namaAsli.toLowerCase(), namaAsli].filter((v,i,a) => v && a.indexOf(v) === i);
@@ -416,7 +475,7 @@ function cariDataTendikLokal(){
 }
 
 /* ============================================================
-   RENDER PROFIL TENDIK (Format sama persis dengan kepsek.html)
+   RENDER PROFIL TENDIK
    ============================================================ */
 function renderProfil(){
   const nama = user.nama;
@@ -440,9 +499,7 @@ function renderProfil(){
   const lama = hitungLamaMengajar(dataTendik.tmt);
   document.getElementById('profileLama').textContent = dataTendik.tmt ? '⏱️ ' + lama.teks : '';
 
-  // ============================================================
-  // IDENTITAS — semua field selalu tampil (kosong = "-")
-  // ============================================================
+  // IDENTITAS
   let html = '';
   const identitas = [
     { l: 'NIK',           v: dataTendik.nik || '-' },
@@ -457,9 +514,7 @@ function renderProfil(){
   });
   html += '</div>';
 
-  // ============================================================
-  // KEPEGAWAIAN — semua field selalu tampil
-  // ============================================================
+  // KEPEGAWAIAN
   const pegawai = [
     { l: 'Pendidikan',    v: dataTendik.pendidikan || '-' },
     { l: 'TMT',           v: dataTendik.tmt ? formatTanggalPanjang(dataTendik.tmt) : '-' },
@@ -472,9 +527,7 @@ function renderProfil(){
   });
   html += '</div>';
 
-  // ============================================================
-  // KONTAK — semua field selalu tampil
-  // ============================================================
+  // KONTAK
   const kontak = [
     { l: 'HP/WA',  v: dataTendik.hp || '-' },
     { l: 'Email',  v: dataTendik.email || '-' },
@@ -488,7 +541,6 @@ function renderProfil(){
 
   body.innerHTML = html;
 
-  // Foto profil
   pakaiFotoAtauAvatar(document.getElementById('profilePhoto'), dataTendik.nama);
 }
 renderProfil();
@@ -521,7 +573,7 @@ function logout(){
   }
 }
 
-console.log('✅ tendik.html (Prototipe) loaded — tanpa Supabase, tanpa link menu');
+console.log('✅ tendik.html (Prototipe) loaded — proteksi aktif, tanpa Supabase');
 </script>
 
 </body>
