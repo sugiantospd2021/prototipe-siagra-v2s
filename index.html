@@ -1723,8 +1723,36 @@
   </div>
 
 </div>
-
 <script>
+    // --- FITUR PROTEKSI SOURCE CODE SIAGRA ---
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        alert('⚠️ Klik kanan dinonaktifkan untuk melindungi source code SIAGRA.');
+    });
+
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        // Opsional: alert('⚠️ Copy dinonaktifkan.');
+    });
+
+    document.addEventListener('cut', function(e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        // Mencegah Ctrl+A, Ctrl+C, Ctrl+X, dan F12 (Inspect Element)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X')) {
+            e.preventDefault();
+        }
+        // Mencegah tombol F12
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+            alert('⚠️ Fitur Inspect Element dinonaktifkan.');
+        }
+    });
+</script>
+<script>
+
 /* ============================================================
    SIAGRA v.2.s — Cover Sekolah (FINAL)
    ============================================================ */
