@@ -57,11 +57,11 @@
   #password{padding-right:44px;transition:all .25s ease;}
   #password:hover{border-color:var(--role-glow);box-shadow:0 0 12px var(--role-glow-soft),0 0 0 3px var(--role-glow-soft);}
   #password:focus{border-color:var(--role-glow);box-shadow:0 0 18px var(--role-glow),0 0 28px var(--role-glow-soft),0 0 0 3px var(--role-glow-soft);}
-  
+
   /* PERBAIKAN POSISI IKON MATA */
   .toggle-password{position:absolute;right:10px;top:calc(50% + 10px);transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#94A3B8;padding:5px;border-radius:8px;transition:all .2s;}
   .toggle-password:hover{color:var(--role-glow);background:rgba(255,255,255,.06);transform:translateY(-50%) scale(1.15);}
-  
+
   button.login-btn{width:100%;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg,#22C55E,#4ADE80);color:#0A1612;font-size:14.5px;font-weight:800;cursor:pointer;margin-top:8px;letter-spacing:.02em;font-family:inherit;box-shadow:0 4px 14px rgba(74,222,128,.35);transition:all .28s ease;position:relative;overflow:hidden;}
   button.login-btn::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease;}
   button.login-btn:hover:not(:disabled){transform:translateY(-2px);background:linear-gradient(135deg,#16A34A,#22C55E,#4ADE80);box-shadow:0 0 20px rgba(74,222,128,.85),0 0 40px rgba(74,222,128,.5),0 8px 22px rgba(0,0,0,.4);}
@@ -104,7 +104,7 @@
       <h3>RA MAZKIRA IMANI</h3>
       <p>Barito Kuala</p>
     </div>
-    
+
     <div class="field">
       <label>Login Sebagai</label>
       <select id="role" onchange="updateNamaDropdown()">
@@ -118,8 +118,7 @@
       <label>Nama</label>
       <select id="nama" onchange="updateEmailField()"></select>
     </div>
-    
-    
+
     <!-- ✅ Password dikembalikan untuk SEMUA role -->
     <div class="field password-wrapper" id="passwordField">
       <label>Password</label>
@@ -131,6 +130,35 @@
     <div class="footer">~ <strong>SIAGRA v.2.s</strong> — © Sugianto, S.Pd., Gr. ~</div>
   </div>
 </div>
+<script>
+/* ============================================================
+   PROTEKSI SOURCE CODE SIAGRA (gabungan dari proteksi.html)
+   ============================================================ */
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert('⚠️ Klik kanan dinonaktifkan untuk melindungi source code SIAGRA.');
+});
+
+document.addEventListener('copy', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('cut', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+  // Mencegah Ctrl+A, Ctrl+C, Ctrl+X
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X')) {
+    e.preventDefault();
+  }
+  // Mencegah F12 (Inspect Element)
+  if (e.key === 'F12' || e.keyCode === 123) {
+    e.preventDefault();
+    alert('⚠️ Fitur Inspect Element dinonaktifkan.');
+  }
+});
+</script>
 
 <script>
 /* ============================================================
@@ -182,7 +210,7 @@ function togglePassword(e){
   if(e && e.preventDefault) e.preventDefault();
   const input = document.getElementById('password');
   const btn = (e && e.currentTarget) ? e.currentTarget : document.querySelector('.toggle-password');
-  if(input.type === 'password'){ input.type = 'text'; if(btn) btn.textContent = '🙈'; } 
+  if(input.type === 'password'){ input.type = 'text'; if(btn) btn.textContent = '🙈'; }
   else { input.type = 'password'; if(btn) btn.textContent = '👁️'; }
 }
 
@@ -203,8 +231,8 @@ function playErrorBeep(){
       osc.start(ctx.currentTime + startAt);
       osc.stop(ctx.currentTime + startAt + dur + 0.02);
     };
-    beep(0.00, 880, 0.4); 
-    beep(0.4, 659, 0.6); 
+    beep(0.00, 880, 0.4);
+    beep(0.4, 659, 0.6);
     setTimeout(() => { try{ ctx.close(); }catch(e){} }, 1200);
   }catch(e){}
 }
