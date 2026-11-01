@@ -224,71 +224,71 @@
       </div>
     </div>
 
-    <!-- MENU GURU (tanpa link) -->
-<div class="menu-section-title">Menu Guru</div>
-<div class="menu-grid">
+    <!-- MENU GURU -->
+    <div class="menu-section-title">Menu Guru</div>
+    <div class="menu-grid">
 
-  <div class="menu-card c-absensi" onclick="menuBelumAktif('Absensi Guru')">
-    <div class="icon">📅</div>
-    <div class="card-text">
-      <h3>Absensi Guru</h3>
-      <p>Kehadiran harian &amp; rekap</p>
-    </div>
-  </div>
-
-  <div class="menu-card c-rpph" id="cardRPPH" onclick="toggleSubmenuRPPH(event)">
-    <div class="icon">✨</div>
-    <div class="card-text">
-      <h3>RPPH/RPPM</h3>
-      <p>Buat &amp; lihat riwayat (KBC)</p>
-    </div>
-    <div class="expand-arrow">▼</div>
-  </div>
-
-  <div class="submenu-rpph" id="submenuRPPH">
-    <div class="submenu-btn sb-buat" onclick="menuBelumAktif('Buat RPPH/RPPM')">
-      <div class="sb-icon">📝</div>
-      <div class="sb-text">
-        <strong>Buat RPPH/RPPM</strong>
-        <small>Buat RPPH/RPPM harian &amp; mingguan</small>
+      <div class="menu-card c-absensi" onclick="menuBelumAktif('Absensi Guru')">
+        <div class="icon">📅</div>
+        <div class="card-text">
+          <h3>Absensi Guru</h3>
+          <p>Kehadiran harian &amp; rekap</p>
+        </div>
       </div>
-      <span class="sb-arrow">→</span>
-    </div>
-    <div class="submenu-btn sb-riwayat" onclick="menuBelumAktif('Riwayat RPPH/RPPM')">
-      <div class="sb-icon">📚</div>
-      <div class="sb-text">
-        <strong>Riwayat RPPH/RPPM</strong>
-        <small>Lihat RPPH/RPPM yang pernah dibuat</small>
+
+      <div class="menu-card c-rpph" id="cardRPPH" onclick="toggleSubmenuRPPH(event)">
+        <div class="icon">✨</div>
+        <div class="card-text">
+          <h3>RPPH/RPPM</h3>
+          <p>Buat &amp; lihat riwayat (KBC)</p>
+        </div>
+        <div class="expand-arrow">▼</div>
       </div>
-      <span class="sb-arrow">→</span>
-    </div>
-  </div>
 
-  <div class="menu-card c-anekdot" onclick="menuBelumAktif('Catatan Anekdot')">
-    <div class="icon">📔</div>
-    <div class="card-text">
-      <h3>Catatan Anekdot</h3>
-      <p>Catat kejadian khusus anak (KBC)</p>
-    </div>
-  </div>
+      <div class="submenu-rpph" id="submenuRPPH">
+        <div class="submenu-btn sb-buat" onclick="menuBelumAktif('Buat RPPH/RPPM')">
+          <div class="sb-icon">📝</div>
+          <div class="sb-text">
+            <strong>Buat RPPH/RPPM</strong>
+            <small>Buat RPPH/RPPM harian &amp; mingguan</small>
+          </div>
+          <span class="sb-arrow">→</span>
+        </div>
+        <div class="submenu-btn sb-riwayat" onclick="menuBelumAktif('Riwayat RPPH/RPPM')">
+          <div class="sb-icon">📚</div>
+          <div class="sb-text">
+            <strong>Riwayat RPPH/RPPM</strong>
+            <small>Lihat RPPH/RPPM yang pernah dibuat</small>
+          </div>
+          <span class="sb-arrow">→</span>
+        </div>
+      </div>
 
-  <div class="menu-card c-observasi" onclick="menuBelumAktif('Observasi Harian')">
-    <div class="icon">👀</div>
-    <div class="card-text">
-      <h3>Observasi Harian</h3>
-      <p>Checklist 6 Nilai Cinta KBC</p>
-    </div>
-  </div>
+      <div class="menu-card c-anekdot" onclick="menuBelumAktif('Catatan Anekdot')">
+        <div class="icon">📔</div>
+        <div class="card-text">
+          <h3>Catatan Anekdot</h3>
+          <p>Catat kejadian khusus anak (KBC)</p>
+        </div>
+      </div>
 
-  <div class="menu-card c-penilaian" onclick="menuBelumAktif('Penilaian KBC')">
-    <div class="icon">⭐</div>
-    <div class="card-text">
-      <h3>Penilaian KBC</h3>
-      <p>Nilai 6 pilar cinta &amp; raport</p>
-    </div>
-  </div>
+      <div class="menu-card c-observasi" onclick="menuBelumAktif('Observasi Harian')">
+        <div class="icon">👀</div>
+        <div class="card-text">
+          <h3>Observasi Harian</h3>
+          <p>Checklist 6 Nilai Cinta KBC</p>
+        </div>
+      </div>
 
-</div>
+      <div class="menu-card c-penilaian" onclick="menuBelumAktif('Penilaian KBC')">
+        <div class="icon">⭐</div>
+        <div class="card-text">
+          <h3>Penilaian KBC</h3>
+          <p>Nilai 6 pilar cinta &amp; raport</p>
+        </div>
+      </div>
+
+    </div>
 
     <div class="footer">~ <strong>SIAGRA v.2.s</strong> — © Sugianto, S.Pd., Gr. ~</div>
   </div>
@@ -300,11 +300,40 @@
 
 <script>
 /* ============================================================
-   SIAGRA v.2.s — Guru PROTOTIPE (TANPA SUPABASE)
-   Data guru dummy dari localStorage (diisi admin.html)
+   PROTEKSI SOURCE CODE SIAGRA (gabungan dari proteksi.html)
    ============================================================ */
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+  alert('⚠️ Klik kanan dinonaktifkan untuk melindungi source code SIAGRA.');
+});
 
-/* ---------- TOAST ---------- */
+document.addEventListener('copy', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('cut', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+  // Mencegah Ctrl+A, Ctrl+C, Ctrl+X
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X')) {
+    e.preventDefault();
+  }
+  // Mencegah F12 (Inspect Element)
+  if (e.key === 'F12' || e.keyCode === 123) {
+    e.preventDefault();
+    alert('⚠️ Fitur Inspect Element dinonaktifkan.');
+  }
+});
+</script>
+
+<script>
+/* ============================================================
+   SIAGRA v.2.s — Guru PROTOTIPE (TANPA SUPABASE)
+   ============================================================ */
+   
+   /* ---------- TOAST ---------- */
 function showToast(msg, type){
   const t = document.getElementById('toast');
   if(!t) return;
@@ -440,7 +469,6 @@ function avatarSvg(nama){
 }
 function pakaiFotoAtauAvatar(el, nama){
   if(!el) return;
-  // Cek foto upload (berdasarkan email atau nama)
   const key1 = 'ra_foto_' + (user && user.email ? user.email : nama);
   const key2 = 'ra_foto_' + nama;
   const fotoUpload = localStorage.getItem(key1) || localStorage.getItem(key2);
@@ -448,7 +476,6 @@ function pakaiFotoAtauAvatar(el, nama){
     el.innerHTML = `<img src="${fotoUpload}" alt="Foto">`;
     return;
   }
-  // Coba cari file foto di folder foto/
   const namaLower = (nama || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const namaAsli = namaKeFile(nama);
   const kandidat = [namaLower, namaAsli.toLowerCase(), namaAsli].filter((v,i,a) => v && a.indexOf(v) === i);
@@ -479,16 +506,13 @@ function cariDataGuruLokal(){
   const tendikList = JSON.parse(localStorage.getItem('ra_tendik_cache') || '[]');
   const semua = [...guruList, ...tendikList];
 
-  // Coba exact match dulu (nama lengkap + gelar)
   let found = semua.find(g => normalisasiNama(g.nama) === namaLogin);
   if(found) return found;
 
-  // Coba nama depan
   const namaDepan = namaLogin.split(' ')[0];
   found = semua.find(g => normalisasiNama(g.nama).startsWith(namaDepan));
   if(found) return found;
 
-  // Fallback: kalau user ini Elma, buat data dummy
   if(namaLogin.includes('elma')){
     return {
       id: 'g1',
@@ -551,9 +575,7 @@ function renderProfil(){
   const lama = hitungLamaMengajar(dataGuru.tmt);
   document.getElementById('profileLama').textContent = dataGuru.tmt ? '⏱️ ' + lama.teks : '';
 
-  // ============================================================
-  // IDENTITAS — semua field SELALU tampil (kosong = "-")
-  // ============================================================
+  // IDENTITAS
   let html = '';
   const identitas = [
     { l: 'NIK',           v: dataGuru.nik || '-' },
@@ -568,16 +590,13 @@ function renderProfil(){
   });
   html += '</div>';
 
-  // ============================================================
-  // KEPEGAWAIAN — semua field SELALU tampil
-  // ============================================================
+  // KEPEGAWAIAN
   const rombelGuru = cariRombelGuru(dataGuru);
   const pegawai = [
     { l: 'Pendidikan',    v: dataGuru.pendidikan || '-' },
     { l: 'TMT',           v: dataGuru.tmt ? formatTanggalPanjang(dataGuru.tmt) : '-' },
     { l: 'Lama Mengajar', v: dataGuru.tmt ? lama.teks : '-' },
-    { l: 'Jabatan',       v: dataGuru.jabatan || '-' },
-    
+    { l: 'Jabatan',       v: dataGuru.jabatan || '-' }
   ];
   html += '<div class="info-section-title">💼 Kepegawaian</div><div class="info-list">';
   pegawai.forEach(it => {
@@ -585,9 +604,7 @@ function renderProfil(){
   });
   html += '</div>';
 
-  // ============================================================
-  // KONTAK — semua field SELALU tampil
-  // ============================================================
+  // KONTAK
   const kontak = [
     { l: 'HP/WA',  v: dataGuru.hp || '-' },
     { l: 'Email',  v: dataGuru.email || '-' },
@@ -601,23 +618,20 @@ function renderProfil(){
 
   body.innerHTML = html;
 
-  // Foto profil
   const fotoEl = document.getElementById('profilePhoto');
   pakaiFotoAtauAvatar(fotoEl, dataGuru.nama);
 }
 renderProfil();
 
-
 /* ============================================================
    GREETING
    ============================================================ */
 function updateGreeting(){
-  // 1. Tentukan waktu (WITA)
   const now = new Date();
   const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
   const wita = new Date(utc + (8 * 3600000));
   const jam = wita.getHours();
-  
+
   let kelas = 'w-malam';
   let emoji = '🌙';
   let sapaanTeks = 'Selamat Malam';
@@ -634,36 +648,28 @@ function updateGreeting(){
     subTeks = 'Jangan lupa selesaikan administrasi hari ini.';
   }
 
-    // 2. Ambil Nama Panggilan & Gelar (Bapak/Ibu)
   let namaTampil = "Guru";
-  let sapaanGender = ""; // Variabel untuk menyimpan "Bapak" atau "Ibu"
-  
+  let sapaanGender = "";
+
   const dataGuru = typeof cariDataGuruLokal === 'function' ? cariDataGuruLokal() : null;
-  
+
   if (dataGuru && dataGuru.nama) {
-    // Ambil nama depan sebelum koma
     namaTampil = dataGuru.nama.split(',')[0].split(' ')[0];
-    // Cek jenis kelamin dari data profil
     if (dataGuru.jk === 'L') sapaanGender = "Bapak ";
     else if (dataGuru.jk === 'P') sapaanGender = "Ibu ";
-    
   } else if (user && user.nama) {
     namaTampil = user.nama.split(',')[0].split(' ')[0];
-    // Jika data profil tidak ketemu, coba tebak dari nama (opsional)
     if (user.nama.toLowerCase().includes('binti') || user.nama.toLowerCase().includes('siti')) {
-       sapaanGender = "Ibu ";
+      sapaanGender = "Ibu ";
     }
   }
 
-  // 3. Terapkan ke HTML
   const card = document.getElementById('welcomeCard');
   if(card){
     card.classList.remove('w-pagi','w-siang','w-sore','w-malam');
     card.classList.add(kelas);
   }
   document.getElementById('welcomeEmoji').textContent = emoji;
-  
-  // Gabungkan sapaan waktu + gelar + nama
   document.getElementById('welcomeText').textContent = sapaanTeks + ', ' + sapaanGender + namaTampil + '!';
   document.getElementById('welcomeSub').textContent = subTeks;
 }
@@ -763,7 +769,7 @@ document.addEventListener('click', function(e){
   card.classList.remove('expanded');
 });
 
-console.log('✅ guru.html (Prototipe) loaded — tanpa Supabase');
+console.log('✅ guru.html (Prototipe) loaded — tanpa Supabase + proteksi aktif');
 </script>
 
 </body>
