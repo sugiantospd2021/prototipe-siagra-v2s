@@ -46,6 +46,11 @@
   .info-item{display:flex;justify-content:space-between;gap:8px;padding:7px 10px;background:var(--card-inner);border:1px solid var(--border);border-radius:8px;font-size:11.5px;}
   .info-item .lbl{color:var(--sub);font-weight:600;flex-shrink:0}
   .info-item .val{color:var(--text);font-weight:700;text-align:right;word-break:break-word;min-width:0;}
+  .profile-photo-actions{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
+  .btn-photo-action{padding:5px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--card-inner);color:var(--text);transition:all .2s;}
+  .btn-photo-action:hover{transform:translateY(-1px);}
+  .btn-photo-upload{border-color:rgba(16,185,129,.4);color:#6EE7B7}
+  .btn-photo-hapus{border-color:rgba(220,38,38,.4);color:#FCA5A5}
 </style>
 
 <style>
@@ -198,8 +203,10 @@
   .orn17{bottom:25%;right:20%;color:#818CF8;font-size:22px;animation-delay:2.2s}
   @media(max-width:768px){.ornament{display:none}}
   @media(max-width:900px){.wrapper{grid-template-columns:1fr;gap:18px;}.col-profil{position:static;height:auto;max-height:none;}.profile-card{max-height:none;height:auto;}.profile-card-body{overflow-y:visible;max-height:none;}}
+  
   @media(max-width:640px){.header{flex-wrap:wrap;padding:12px 16px;position:relative}.header-left,.header-center,.header-right{flex:1 1 100%;justify-content:center;text-align:center}.wrapper{padding:16px 12px}.menu-grid{grid-template-columns:1fr}}
-</style>
+  
+  </style>
 </head>
 <body class="dark">
 
@@ -286,12 +293,12 @@
         </div>
 
         <div class="menu-card c-gtk" onclick="menuBelumAktif('Data GTK')">
-  <div class="icon">🧑</div>
-  <div class="card-text">
-    <h3>Data GTK</h3>
-    <p>Kelola Data Guru &amp; Tenaga Kependidikan</p>
-  </div>
-</div>
+          <div class="icon">🧑</div>
+          <div class="card-text">
+            <h3>Data GTK</h3>
+            <p>Kelola Data Guru &amp; Tenaga Kependidikan</p>
+          </div>
+        </div>
 
         <div class="menu-card c-rombel" onclick="menuBelumAktif('Data Rombel')">
           <div class="icon">🏫</div>
@@ -646,8 +653,49 @@
 
 <div class="toast" id="toast">✨</div>
 
-<script src="panggilan.js"></script>
 <script>
+  function ambilSapaanWaktu() {
+    const h = new Date().getHours();
+    if (h >= 4 && h < 11) return { kelas: 'w-pagi', emoji: '🌅', sapaan: 'Selamat pagi', sub: 'Semoga hari ini menyenangkan.' };
+    if (h >= 11 && h < 15) return { kelas: 'w-siang', emoji: '☀️', sapaan: 'Selamat siang', sub: 'Jangan lupa istirahat.' };
+    if (h >= 15 && h < 18) return { kelas: 'w-sore', emoji: '🌇', sapaan: 'Selamat sore', sub: 'Waktu yang tepat untuk bersantai.' };
+    return { kelas: 'w-malam', emoji: '🌙', sapaan: 'Selamat malam', sub: 'Istirahat yang cukup ya.' };
+  }
+  function ambilNamaPanggilan(nama) {
+    return (nama || '').split(',')[0].split(' ')[0] || 'Admin';
+  }
+</script>
+<script>
+/* ============================================================
+   🔒 PROTEKSI SOURCE CODE SIAGRA (dari proteksi.html)
+   Ditempatkan paling atas agar event listener terpasang lebih dulu
+   ============================================================ */
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('⚠️ Klik kanan dinonaktifkan untuk melindungi source code SIAGRA.');
+});
+
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    // Opsional: alert('⚠️ Copy dinonaktifkan.');
+});
+
+document.addEventListener('cut', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+    // Mencegah Ctrl+A, Ctrl+C, Ctrl+X, dan F12 (Inspect Element)
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X')) {
+        e.preventDefault();
+    }
+    // Mencegah tombol F12
+    if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+        alert('⚠️ Fitur Inspect Element dinonaktifkan.');
+    }
+});
+
 /* ============================================================
    SIAGRA v.2.s — Admin PROTOTIPE (TANPA SUPABASE)
    Semua data disimpan di localStorage (data dummy + CRUD)
@@ -1158,7 +1206,8 @@ function saveGuru(){
   const nama = document.getElementById('guruNama').value.trim();
   const jabatan = document.getElementById('guruJabatan').value;
   if(!nama){ showToast('❌ Nama wajib diisi', 'error'); return; }
-  const data = {
+  
+    const data = {
     nama: nama,
     nik: document.getElementById('guruNik').value.trim(),
     npk: document.getElementById('guruNpk').value.trim(),
@@ -1185,8 +1234,7 @@ function saveGuru(){
       const idx = arr.findIndex(x => String(x.id) === String(id));
       if(idx >= 0) arr[idx] = { ...arr[idx], ...data };
     }
- 
-   } else {
+  } else {
     data.id = newKat[0] + Date.now();
     (isTendik ? DATA_TENDIK : DATA_GURU).push(data);
   }
